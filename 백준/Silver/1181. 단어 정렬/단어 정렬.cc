@@ -25,7 +25,6 @@ int main() {
 	sort(str.begin(), str.end(), customostr);
 	str.erase(unique(str.begin(), str.end()), str.end());
 
-	//sort(str.begin(), str.end());
 	for (auto& n : str) {
 		cout << n << endl;
 	}
