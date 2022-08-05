@@ -1,20 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//bool ret(tuple<int, int, string > s1,tuple<int, int, string > s2) {
-//
-//	if (get<0>(s1) == get<0>(s2)) {
-//		if (get<1>(s1) > get<1>(s2))
-//			return get<1>(s1) < get<1>(s2);
-//	}
-//	else{
-//		return get<0>(s1) < get<0>(s2);
-//	}
-//}
-
-bool ret(pair<int, string> a, pair<int, string> b) {
-	return a.first < b.first;
+bool ret(tuple<int, int, string > s1,tuple<int, int, string > s2) {
+	if (get<0>(s1) == get<0>(s2))
+		return get<1>(s1) < get<1>(s2);
+	return get<0>(s1) < get<0>(s2);
 }
+
 
 int main() {
 	ios_base::sync_with_stdio(false);
