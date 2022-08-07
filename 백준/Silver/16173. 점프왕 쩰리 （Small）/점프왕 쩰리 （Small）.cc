@@ -54,8 +54,6 @@ int main() {
 			int t; cin >> t; v[i][j] = t;
 		}
 	}
-	vector <bool> vs(3);
-	vector <vector <bool>> visited(3, vs);
 
 	cout << bfs(v);
 
