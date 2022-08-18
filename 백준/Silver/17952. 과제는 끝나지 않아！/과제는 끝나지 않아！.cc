@@ -17,16 +17,16 @@ int main() {
 			time--;
 			st.push({ score,time });
 		}
-		else if (f == 0) {
-			if (!st.empty()) {
+
+		if (!st.empty()) {
+			if (f == 0) {
 				change = st.top();
 				st.pop();
 				change.second -= 1;
 				st.push({ change.first, change.second });
-			}
-		}
 
-		if (!st.empty()) {
+			}
+
 			change = st.top();
 			if (change.second == 0) {
 				totalScore += change.first;
