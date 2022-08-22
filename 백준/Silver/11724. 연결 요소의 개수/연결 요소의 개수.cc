@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int start, vector<int> graph[], bool check[]) {
+/*void dfs(int start, vector<int> graph[], bool check[]) {
 	check[start] = 1;
 
 	for (int i = 0; i < graph[start].size(); i++) {
@@ -10,6 +10,27 @@ void dfs(int start, vector<int> graph[], bool check[]) {
 		if (check[next] == 0)
 			dfs(next, graph, check);
 	}
+}*/
+
+void dfs(int start, vector<int> graph[], bool visit[]) {
+	stack <int> s;
+	s.push(start);
+	visit[start] = 1;
+
+	while (!s.empty()) {
+		int now = s.top(); s.pop();
+		for (int i = 0; i < graph[now].size(); i++) {
+			int next = graph[now][i];
+
+			if (visit[next] == 0) {
+				visit[next] = 1;
+				s.push(now);
+				s.push(next);
+				break;
+			}
+		}
+	}
+
 }
 
 int main() {
