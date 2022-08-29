@@ -21,10 +21,6 @@ int main() {
 		if (i % 2 == 1)
 			arr[i] = min(arr[i / 2] + 2, arr[i]);
 	}
-	
-	/*for (int i = 0; i <= k; i++) {
-		cout << i << " : " << arr[i] << endl;
-	}*/
 
 	cout << arr[k];
 
