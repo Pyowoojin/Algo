@@ -21,7 +21,7 @@ int main(void) {
 		long long maxN = max(a, b);
 		long long minN = min(a, b);
 
-		cout << a * b / gcd(maxN, minN) << endl;
+		cout << a * b / gcd(minN, maxN) << endl;
 
 		n--;
 	}
