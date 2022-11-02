@@ -1,17 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
-void prt(const vector <T>& vc) {
-	for (int i = 0; i < vc.size(); i++) {
-		for (int j = 0; j < vc[0].size(); j++) {
-			cout << vc[i][j] << "";
-		}
-		cout << '\n';
-	}
-	cout << '\n';
-}
-
 bool isTrue(string s) {
 	int wcnt = 0, ocnt = 0, lcnt = 0, fcnt = 0;
 	for (int i = 0; i < s.length(); i++){
@@ -78,16 +67,11 @@ int main(void) {
 			else
 				break;
 			string tmp = s.substr(nowcnt, check);
-			// cout << tmp << endl;
 			nowcnt = i;
 			success = isTrue(tmp);
-// 			i++;
 		}
 		cout << success;
 	}
 	else
 		cout << '0';
-
 }
-
-
