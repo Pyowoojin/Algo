@@ -22,7 +22,6 @@ void rotation(vector <string>& wheel, int wheelNum, int dir, string originStatus
     // toRight이 2이면 이전 톱니의 6번과 현재 톱니의 2번을 비교
     // toRight이 3이면 첫 변화
 
-    // 이동이 일어난 3번 톱니와 현재 나의 3번 톱니의 상태에 따라 회전이 이루어져야함
     if (k > 0) {
         // N - S 로 다른 극이라면 톱니바퀴 회전
         if (toRight == 1) {
@@ -41,6 +40,7 @@ void rotation(vector <string>& wheel, int wheelNum, int dir, string originStatus
                     wheel[wheelNum].push_back(last);
                 }
             }
+            // 같은 극이라 회전이 이루어지지 않았다면, 연쇄 작용을 종료함 ★
             else {
                 return;
             }
@@ -65,23 +65,6 @@ void rotation(vector <string>& wheel, int wheelNum, int dir, string originStatus
                 return;
             }
         }
-        /*if (originStatus[2] != wheel[wheelNum][2]) {
-           // 현재의 상태를 보존하고 다음 톱니바퀴에 넘겨준다.
-           // 시계 방향 회전
-           if (dir == 1) {
-              // 마지막 숫자를 빼고 맨 앞에 집어넣어준다.
-              char last = wheel[wheelNum][7];
-              wheel[wheelNum].pop_back();
-              wheel[wheelNum].insert(0, 1, last);
-           }
-           // 반시계 방향 회전
-           else {
-              // 맨 앞 숫자를 빼고 맨 뒤로 넣어준다.
-              char last = wheel[wheelNum][0];
-              wheel[wheelNum].erase(0, 1);
-              wheel[wheelNum].push_back(last);
-           }
-        }*/
     }
     else
     {
@@ -101,10 +84,6 @@ void rotation(vector <string>& wheel, int wheelNum, int dir, string originStatus
     }
 
     isChanged[wheelNum] = true;
-
-    /*for (auto i : wheel)
-        cout << i << endl;
-    cout << endl;*/
 
     // 재귀문 실행
     // 왼쪽 이동 = 1, 오른쪽 이동 = 2
