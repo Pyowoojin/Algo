@@ -4,21 +4,13 @@ using namespace std;
 
 bool cmp(const pair <string, int>& a, const pair <string, int>& b) {
 	// 단어 수 비교
-	if (a.second > b.second)
+	if (a.second != b.second)
 		return a.second > b.second;
-	// 단어가 같다면
-	else if (a.second == b.second) {
-		// 단어 길이도 같다면
-		if (a.first.size() == b.first.size()) {
-			if (a.first == b.first)
-				return false;
-			else
-				return a.first < b.first;
-		}
-		else
-			return a.first.size() > b.first.size();
-	}
-	return a.second > b.second;
+
+	if (a.first.size() != b.first.size())
+		return a.first.size() > b.first.size();
+
+	return a.first < b.first;
 }
 
 // 17 - 42
