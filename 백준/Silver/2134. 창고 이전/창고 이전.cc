@@ -12,7 +12,7 @@ int main() {
 	vector <long long> newStorage;
 	long long totalCost = 0;
 
-	long long originCnt = 0, nextCnt = 0;
+	long long originCnt = 0, newCnt = 0;
 
 	for (long long i = 0; i < n; i++) {
 		long long c; cin >> c;
@@ -23,13 +23,13 @@ int main() {
 	for (long long i = 0; i < m; i++) {
 		long long c; cin >> c;
 		newStorage.push_back(c);
-		nextCnt += c;
+		newCnt += c;
 	}
 
 	long long totalCnt = 0;
 
 	long long originCurFloor = 0, newCurFloor = 0;
-	while (originCnt && nextCnt) {
+	while (originCnt && newCnt) {
 		// 해당 층에 물건이 없으면 다음 층으로
 		if (!originStorage[originCurFloor]) {
 			originCurFloor++;
@@ -45,7 +45,7 @@ int main() {
 		totalCost += originCurFloor + 2 + newCurFloor;
 		originStorage[originCurFloor]--;
 		newStorage[newCurFloor]--;
-		originCnt--; nextCnt--;
+		originCnt--; newCnt--;
 
 	}
 	cout << totalCnt << " " << totalCost;
