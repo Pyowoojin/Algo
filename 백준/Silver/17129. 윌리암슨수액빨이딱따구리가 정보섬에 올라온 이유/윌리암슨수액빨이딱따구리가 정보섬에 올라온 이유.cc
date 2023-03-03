@@ -3,9 +3,6 @@ using namespace std;
 
 int dx[4] = { -1,0,1,0 };
 int dy[4] = { 0,1,0,-1 };
-
-int a, b, c;
-
 map <string, int> mp;
 
 bool comp(pair <string, int>& a, pair <string, int>& b) {
@@ -47,21 +44,17 @@ void bfs(vector <vector <int>>& vc, vector <vector<int>>& visited, vector <vecto
 					visited[nX][nY] = 1;
 					if (vc[nX][nY] == 3) {
 						mp["a"] = mind[nX][nY];
-						// return 3;
 					}
 					else if (vc[nX][nY] == 4) {
 						mp["b"] = mind[nX][nY];
-						// return 4;
 					}
 					else if (vc[nX][nY] == 5) {
 						mp["c"] = mind[nX][nY];
-						// return 5;
 					}
 				}
 			}
 		}
 	}
-	// return -1;
 }
 
 int main() {
@@ -108,6 +101,4 @@ int main() {
 		if (i + 1 == sorting.size())
 			cout << "NIE";
 	}
-
-	
 }
