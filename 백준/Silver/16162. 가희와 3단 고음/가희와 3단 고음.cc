@@ -6,20 +6,18 @@ int main() {
 	cout.tie(0);
 	ios_base::sync_with_stdio(0);
 
-	long long n,a,d; cin >> n >> a >> d;
+	int n,a,d; cin >> n >> a >> d;
 
-	vector<long long> cv(n);
+	vector <int> cv(n);
 
-	for (long long i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) {
 		cin >> cv[i];
 	}
 
 	auto iter = find(cv.begin(), cv.end(), a);
 
-	// cout << *iter << endl;
-
-	long long now = a;
-	long long cnt = 0;
+	int now = a;
+	int cnt = 0;
 
 	if (iter != cv.end()) {
 		cnt++;
