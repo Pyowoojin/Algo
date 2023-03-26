@@ -10,7 +10,7 @@ bool IsValid(vector <vector <char>>& vc, int nX, int nY) {
 	return (nX > -1 && nY > -1 && nX < vc.size() && nY < vc[0].size());
 }
 
-int Backtracking(vector <vector <char>> &vc, vector <vector <char>> &visited, int nowX, int nowY, int cnt) {
+int Backtracking(vector <vector <char>> &vc, int nowX, int nowY, int cnt) {
 	if (cnt > lim)
 		return 0;
 
@@ -26,11 +26,9 @@ int Backtracking(vector <vector <char>> &vc, vector <vector <char>> &visited, in
 		int nX = nowX + dx[k];
 		int nY = nowY + dy[k];
 
-		if (IsValid(vc, nX, nY) && visited[nX][nY] != '1' && vc[nX][nY] != '#') {
-			// visited[nX][nY] = '1';
-			int maxN = Backtracking(vc, visited, nX, nY, cnt+1);
+		if (IsValid(vc, nX, nY) && vc[nX][nY] != '#') {
+			int maxN = Backtracking(vc, nX, nY, cnt+1);
 			l = max(maxN, l);
-			visited[nX][nY] = '0';
 		}
 	}
 
@@ -48,8 +46,6 @@ int main(void) {
 
 	int r, c; cin >> r >> c >> lim;
 	vector <vector <char>> vc(r, vector <char>(c));
-	vector <vector <char>> visited(vc);
-
 	int startX = 0, startY = 0;
 
 	for (int i = 0; i < r; i++) {
@@ -63,6 +59,6 @@ int main(void) {
 		}
 	}
 
-	cout << Backtracking(vc, visited, startX, startY, 0);
+	cout << Backtracking(vc, startX, startY, 0);
 }
 
