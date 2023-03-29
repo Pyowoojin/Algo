@@ -16,16 +16,6 @@ int eX, eY;
 bool ans = false;
 int cnt = 0;
 
-void prt(vector <vector <int>>& vc) {
-	for (int i = 0; i < vc.size(); i++) {
-		for (int j = 0; j < vc[0].size(); j++) {
-			cout << vc[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
-
 bool isValid(int nX, int nY, vector <vector <int>>& vc, int a, int b) {
 	// 맵 안인지 확인
 	if (nX > -1 && nY > -1 && nX + a - 1 < vc.size() && nY + b - 1 < vc[0].size()) {
@@ -42,15 +32,7 @@ bool isValid(int nX, int nY, vector <vector <int>>& vc, int a, int b) {
 	return false;
 }
 
-void RefreshDist(int nowX, int nowY, int a, int b, vector <vector< int>>& dist, int nX, int nY) {
-	for (int i = nX; i < nX + a; i++) {
-		for (int j = nY; j < nY + b; j++) {
-			dist[i][j] = dist[nowX][nowY] + 1;
-		}
-	}
-}
-
-void bfs(vector <vector <int>>& vc, vector <vector <int>>& visited, vector <vector <int>>& dist, int a, int b) {
+void bfs(vector <vector <int>>& vc, vector <vector <int>>& visited, int a, int b) {
 	Point tmp;
 	queue <Point> q;
 	q.push({ 0, sX,sY });
@@ -58,7 +40,6 @@ void bfs(vector <vector <int>>& vc, vector <vector <int>>& visited, vector <vect
 
 	while (!q.empty()) {
 		tmp = q.front(); q.pop();
-		// prt(dist);
 
 		for (int k = 0; k < 4; k++) {
 			int nX = dx[k] + tmp.x;
@@ -66,12 +47,9 @@ void bfs(vector <vector <int>>& vc, vector <vector <int>>& visited, vector <vect
 
 			if (isValid(nX, nY, vc, a, b) && visited[nX][nY] == 0) {
 				visited[nX][nY] = 1;
-				RefreshDist(tmp.x, tmp.y, a, b, dist, nX, nY);
 				if (nX == eX && nY == eY) {
 					ans = true;
 					cnt = tmp.dist;
-					
-					// cout << "성공ㅋ x : " << nX << " y : " << nY <<endl;
 				}
 				q.push({ tmp.dist + 1, nX, nY });
 			}
@@ -88,7 +66,6 @@ int main() {
 
 	vector <vector <int>> vc(n, vector <int>(m));
 	vector <vector <int>> visited(vc);
-	vector <vector <int>> dist(vc);
 
 	for (int i = 0; i < k; i++) {
 		int ka, kb; cin >> ka >> kb;
@@ -100,26 +77,14 @@ int main() {
 	sX = startX;
 	startY--;
 	sY = startY;
-	for (int i = startX; i < startX + a; i++) {
-		for (int j = startY; j < startY + b; j++) {
-			vc[i][j] = 9;
-		}
-	}
 
 	cin >> startX >> startY;
 	startX--;
 	eX = startX;
 	startY--;
 	eY = startY;
-	//for (int i = startX; i < startX + a; i++) {
-	//	for (int j = startY; j < startY + b; j++) {
-	//		vc[i][j] = 5;
-	//	}
-	//}
 
-	// prt(vc);
-
-	bfs(vc, visited, dist, a, b);
+	bfs(vc, visited, a, b);
 
 	if (ans) {
 		cout << cnt + 1;
