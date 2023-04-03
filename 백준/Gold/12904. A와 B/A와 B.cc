@@ -40,23 +40,17 @@ int main() {
 
 		// 정방향일 때.
 		if (dir) {
-			if (t[t.length() - 1] == 'A') {
-				t.pop_back();
-			}
-			else {
-				t.pop_back();
+			// 빼고 방향 바꾸기.
+			if (t[t.length() - 1] == 'B')
 				dir = !dir;
-			}
+			t.pop_back();
 		}
-		// 역방향일 때
+		// 역방향일 때 -> 앞에서 빼야함
 		else if (!dir) {
-			if (t[0] == 'A') {
-				t.erase(0, 1);
-			}
-			else {
-				t.erase(0, 1);
+			if (t[0] == 'B') {
 				dir = !dir;
 			}
+			t.erase(0, 1);
 		}
 	}
 
