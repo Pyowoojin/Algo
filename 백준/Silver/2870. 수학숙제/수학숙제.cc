@@ -5,9 +5,6 @@ bool comp(string s1, string s2) {
 	if (s1.length() != s2.length()) {
 		return s1.length() < s2.length();
 	}
-	/*else if (s1.length() == s2.length()) {
-		return s1 > s2;
-	}*/
 	return s1 < s2;
 }
 
@@ -22,19 +19,21 @@ string retZero(string s) {
 			j--;
 		}
 	}
-
 	return retString;
 }
 
+// out of range가 났던 이유 : N이 100자까지 입력 될 수 있음
+// 1. 00070같은 앞의 불필요한 0을 제거해야함
+// 2. 숫자로 판단되는 문자열을 vector에 넣고 정렬을 수행해야 함
+
 int main() {
 	int n; cin >> n;
-	multiset <string> st;
 	vector <string> vc;
 
 	for (int i = 0; i < n; i++) {
 		string s; cin >> s;
-
 		string tmp;
+
 		for (int k = 0; k < s.length(); k++) {
 			if (s[k] -'0' >= 0 && s[k] -'0' <= 9) {
 				tmp += s[k];
@@ -44,7 +43,6 @@ int main() {
 					if (tmp[0] == '0') {
 						tmp = retZero(tmp);
 					}
-					st.insert(tmp);
 					vc.push_back(tmp);
 				}
 				tmp = "";
@@ -54,16 +52,12 @@ int main() {
 			if (tmp[0] == '0') {
 				tmp = retZero(tmp);
 			}
-			st.insert(tmp);
 			vc.push_back(tmp);
 		}
 	}
 
-	/*for (auto i : st)
-		cout << i << '\n';*/
 	sort(vc.begin(), vc.end(), comp);
-	// cout << endl;
 
 	for (auto i : vc)
-		cout << i << endl;
+		cout << i << '\n';
 }
