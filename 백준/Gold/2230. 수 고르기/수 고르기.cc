@@ -25,7 +25,6 @@ int main() {
 			nowDiff = vc[endPtr] - vc[startPtr];
 			if (minDiff > nowDiff) {
 				minDiff = nowDiff;
-
 				startPtr++;
 			}
 			else if (minDiff < nowDiff)
