@@ -20,18 +20,6 @@ int CalculateDust(vector<vector <int>>& vc) {
 
 	return sum;
 }
-
-template <typename T>
-void prt(vector <T> vc) {
-	for (int i = 0; i < vc.size(); i++) {
-		for (int j = 0; j < vc[0].size(); j++) {
-			cout << vc[i][j] << " ";
-		}
-		cout << '\n';
-	}
-	cout << '\n';
-}
-
 bool IsValid(vector <vector <int>>& vc, int nX, int nY) {
 	if (nX > -1 && nY > -1 && nX < vc.size() && nY < vc[0].size()) {
 		if (vc[nX][nY] != -1) {
@@ -94,7 +82,6 @@ void CirculationDust(vector <vector <int>>& vc, int i, int j, bool clockwise) {
 
 	while (true) {
 		int nX = 0, nY = 0;
-		// 시계 방향일 경우, 다음 이동 위치를 계산
 		if (clockwise) {
 			nX = nowX + dx[dir];
 			nY = nowY + dy[dir];
@@ -104,20 +91,16 @@ void CirculationDust(vector <vector <int>>& vc, int i, int j, bool clockwise) {
 			nY = nowY + counterdy[dir];
 		}
 
-		// 다음 이동 위치가 올바른 위치인지 확인한다.
-		// 배열의 끝에 도달했다면 방향을 바꾸어준다.
 		if (!IsValid2(vc, nX, nY)) {
 			dir++;
 			continue;
 		}
 
-
-		// 다음 위치가 공기청정기일 경우 종료.
 		if (vc[nX][nY] == -1) {
 			temp[nX][nY] = -1;
 			break;
 		}
-		// 이번 값(nX, nY)을 저장해놓고 이번 값(nX, nY)에 이전 값(nowX, nowY)을 저장
+        
 		val = vc[nX][nY];
 		temp[nX][nY] = 0;
 		if (vc[nowX][nowY] != -1) {
